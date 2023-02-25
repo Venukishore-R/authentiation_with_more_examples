@@ -22,6 +22,3 @@ class PreventBackHistory
                         ->header('Expires','Sun, 02 Jan 1990 00:00:00 GMT');
     }
 }
-
-
-

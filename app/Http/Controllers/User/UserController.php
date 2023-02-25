@@ -8,28 +8,42 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+use Mail;
+
+use Kreait\Firebase\Database;
+use App\Http\Controllers\FirebaseController;
+
 class UserController extends Controller
 {
+    public function __construct(Database $database)
+    {
+        $this->database = $database;
+        $this->tablename = 'users';
+    }
+
     function create(Request $request){
-          //Validate Inputs
-          $request->validate([
-              'name'=>'required',
-              'email'=>'required|email|unique:users,email',
-              'password'=>'required|min:5|max:30',
-              'cpassword'=>'required|min:5|max:30|same:password'
-          ]);
+        //Validate Inputs
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required|min:5|max:30',
+            'cpassword'=>'required|min:5|max:30|same:password'
+        ]);
 
-          $user = new User();
-          $user->name = $request->name;
-          $user->email = $request->email;
-          $user->password = \Hash::make($request->password);
-          $save = $user->save();
 
-          if( $save ){
-              return redirect()->back()->with('success','You are now registered successfully');
-          }else{
-              return redirect()->back()->with('fail','Something went wrong, failed to register');
-          }
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = \Hash::make($request->password);
+        $save = $user->save();
+
+        // if( $save ){
+        //     return redirect()->back()->with('success','You are now registered successful');
+        // }else{
+        //     return redirect()->back()->with('fail','Something went wrong, failed to register');
+        // }
+
+        return app('App\Http\Controllers\Firebase\FirebaseController')->createFirebase($request);
     }
 
     function check(Request $request){
@@ -52,5 +66,20 @@ class UserController extends Controller
     function logout(){
         Auth::guard('web')->logout();
         return redirect('/');
+    }
+
+    function mail()
+    {
+        $data = ['name'=>'venu','sub'=>'sub'];
+        Mail::send('mail',$data,function($messages){
+            $messages->to(Auth::guard('web')->user()->email);
+            $messages->subject('Hello World');
+            $messages->attach(Auth::guard('web')->user()->name.'.png');
+        }); 
+    }
+
+    function print2()
+    {
+        return app('App\Http\Controllers\Firebase\FirebaseController')->print();
     }
 }

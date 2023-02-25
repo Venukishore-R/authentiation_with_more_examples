@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Doctor\DoctorController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Firebase\FirebaseController;
+use App\Http\Controllers\Video\VideoController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,12 +23,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('user')->name('user.')->group(function(){
-  
+    
     Route::middleware(['guest:web','PreventBackHistory'])->group(function(){
           Route::view('/login','dashboard.user.login')->name('login');
           Route::view('/register','dashboard.user.register')->name('register');
@@ -41,10 +45,11 @@ Route::prefix('user')->name('user.')->group(function(){
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
-       
+
     Route::middleware(['guest:admin','PreventBackHistory'])->group(function(){
           Route::view('/login','dashboard.admin.login')->name('login');
           Route::post('/check',[AdminController::class,'check'])->name('check');
+
     });
 
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
@@ -54,4 +59,31 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 });
 
+Route::get('/image', function() {
+    $name = Auth::guard('web')->user()->name;
+    $img = Image::make('Certificate/certi.png')->resize(900, 900)->text($name, 430, 380, function($font) {
+        $font->file('fonts/NexaSlabDemo-Bold.otf');
+        $font->size(90);
+        $font->color('#000000');
+        $font->align('center');
+        $font->valign('top');
+    })->save(Auth::guard('web')->user()->name.'.png');
+   
+    return $img->response('jpg');
 
+
+});
+
+Route::get('/mail',[UserController::class,'mail']);
+
+Route::get('/print',[UserController::class,'print2']);
+
+
+
+Route::get('/coursePage',[VideoController::class,'courseShow'])->name('courseShow');
+Route::get('/video/{id}',[VideoController::class,'videoShow'])->name('videoShow');
+Route::post('/like/{id}',[VideoController::class,'like'])->name('like');
+Route::post('/dislike/{id}',[VideoController::class,'dislike'])->name('dislike');
+
+
+Route::get('/dot',[VideoController::class,'dot']);

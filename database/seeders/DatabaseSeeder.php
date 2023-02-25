@@ -3,8 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use admins;
-use DB;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,12 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-            
-        DB::table('admins')->insert([
-            'name' => 'Admin',
-            'phone' => '8428960240',
-            'email' => 'admin@admin.in',
-            'password' => bcrypt('123456'),
-        ]);
+        // \App\Models\User::factory(10)->create();
     }
 }
