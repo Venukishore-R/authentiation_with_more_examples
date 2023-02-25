@@ -6,7 +6,7 @@ use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Firebase\FirebaseController;
 use App\Http\Controllers\Video\VideoController;
-
+use App\Http\Controllers\Print\PrintController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,4 +86,6 @@ Route::post('/like/{id}',[VideoController::class,'like'])->name('like');
 Route::post('/dislike/{id}',[VideoController::class,'dislike'])->name('dislike');
 
 
-Route::get('/dot',[VideoController::class,'dot']);
+// print functionalities . . .
+Route::get('/user',[PrintController::class,'index']);
+Route::get('/print',[PrintController::class,'print']);
