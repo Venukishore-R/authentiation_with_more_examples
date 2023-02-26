@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Print;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 class PrintController extends Controller
 {
     function index()

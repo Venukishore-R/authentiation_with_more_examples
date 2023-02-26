@@ -17,15 +17,19 @@
 		</center>
 		<center>
 		<div>
-			<div style="color: white;">
+			<div style="color: black;">
 				<form method="post">
 					@csrf
 					<button name="like" type="submit" value="like" formaction="/like/{{ $video->id}}">Like</button>
+					{{ $totallikes }}
 					<button name="dislike" type="submit" value="dislike" formaction="/dislike/{{ $video->id }}">Dislike</button>
+					{{ $totaldislikes }}
 				</form>
 			</div>
 		</div>
 		</center>
+
+
 	</div> 
 </body>
 </html>

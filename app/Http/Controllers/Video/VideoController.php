@@ -24,8 +24,20 @@ class VideoController extends Controller
     public function videoShow($id)
     {
         $video = Video::find($id);
+        $totallikes = DB::table('likedislikes')
+                        ->where('video_id',$id)
+                        ->where('liked',true)
+                        ->count();
+        $totaldislikes = DB::table('likedislikes')
+                        ->where('video_id',$id)
+                        ->where('liked',false)
+                        ->count();
 
-        return view('video/videoPage',['video'=>$video]);
+        return view('video/videoPage')
+                    ->with('video',$video)
+                    ->with('totallikes',$totallikes)
+                    ->with('totaldislikes',$totaldislikes)
+                    ;
     }
 
     public function like($id, $liked = true)
