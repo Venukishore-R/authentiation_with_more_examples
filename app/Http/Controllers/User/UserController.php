@@ -13,6 +13,10 @@ use Mail;
 use Kreait\Firebase\Database;
 use App\Http\Controllers\FirebaseController;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportUser;
+use App\Exports\ExportUser;
+
 class UserController extends Controller
 {
     public function __construct(Database $database)
@@ -78,8 +82,24 @@ class UserController extends Controller
         }); 
     }
 
-    function print2()
+    // function print2()
+    // {
+    //     return app('App\Http\Controllers\Firebase\FirebaseController')->print();
+    // }
+
+    public function importView(Request $request)
     {
-        return app('App\Http\Controllers\Firebase\FirebaseController')->print();
+        return view('Excel.importFile');
+    }
+ 
+    public function import(Request $request)
+    {
+        Excel::import(new ImportUser,$request->file('file')->store('files'));
+        return redirect()->back();
+    }
+ 
+    public function exportUsers(Request $request)
+    {
+        return Excel::download(new ExportUser, 'users.xlsx');
     }
 }

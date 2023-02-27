@@ -8,6 +8,9 @@ use App\Http\Controllers\Firebase\FirebaseController;
 use App\Http\Controllers\Video\VideoController;
 use App\Http\Controllers\Print\PrintController;
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,3 +92,11 @@ Route::post('/dislike/{id}',[VideoController::class,'dislike'])->name('dislike')
 // print functionalities . . .
 Route::get('/user',[PrintController::class,'index']);
 Route::get('/print',[PrintController::class,'print']);
+
+
+
+//Excel functionalities import and export.
+
+Route::get('/file-import',[UserController::class,'importView'])->name('import-view');
+Route::post('/import',[UserController::class,'import'])->name('import');
+Route::get('/export-users',[UserController::class,'exportUsers'])->name('export-users');
