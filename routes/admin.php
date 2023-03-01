@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Doctor\DoctorController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Firebase\FirebaseController;
+use App\Http\Controllers\Video\VideoController;
+use App\Http\Controllers\Print\PrintController;
+
 Route::view('/buttons','dashboard.admin.pages.ui.buttons')->name('button');
 Route::view('/dropdowns','dashboard.admin.pages.ui.dropdowns')->name('dropdown');
 Route::view('/typographys','dashboard.admin.pages.ui.typography')->name('typography');
@@ -22,3 +29,8 @@ Route::view('error_500','dashboard.admin.pages.samples.error-500')->name('error_
 Route::view('/docs','dashboard.admin.pages.documentation.documentation')->name('documentation');
 
 Route::view('/admin_home','dashboard.admin.home')->name('admin_home');
+
+
+// print functionalities . . .
+Route::get('/admin-user-print',[PrintController::class,'index'])->name('user');
+Route::get('/admin-print',[PrintController::class,'print'])->name('print');

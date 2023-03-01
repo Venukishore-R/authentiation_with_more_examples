@@ -10,7 +10,7 @@
 		<div>
 			@foreach($video as $video)
 				<p>{{ $video->id }}</p>
-				<a href="/video/{{$video->id}}">
+				<a href="{{ route('user.videoShow',[$video->id]) }}">
 					{{ $video->videoName }}
 				</a>	
 			@endforeach

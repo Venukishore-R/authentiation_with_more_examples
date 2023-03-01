@@ -82,16 +82,16 @@ Route::get('/mail',[UserController::class,'mail']);
 Route::get('/print',[UserController::class,'print2']);
 
 
+Route::prefix('user')->name('user.')->group(function()
+{
+    Route::get('/coursePage',[VideoController::class,'courseShow'])->name('courseShow');
+    Route::get('/video/{id}',[VideoController::class,'videoShow'])->name('videoShow');
+    Route::post('/like/{id}',[VideoController::class,'like'])->name('like');
+    Route::post('/dislike/{id}',[VideoController::class,'dislike'])->name('dislike');
+});
 
-Route::get('/coursePage',[VideoController::class,'courseShow'])->name('courseShow');
-Route::get('/video/{id}',[VideoController::class,'videoShow'])->name('videoShow');
-Route::post('/like/{id}',[VideoController::class,'like'])->name('like');
-Route::post('/dislike/{id}',[VideoController::class,'dislike'])->name('dislike');
 
 
-// print functionalities . . .
-Route::get('/user',[PrintController::class,'index']);
-Route::get('/print',[PrintController::class,'print']);
 
 
 

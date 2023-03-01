@@ -17,3 +17,7 @@
   <!-- Custom js for this page-->
   <script src="{{ URL::to('adminpanel/js/dashboard.js') }}"></script>
   <script src="{{ URL::to('adminpanel/js/Chart.roundedBarCharts.js') }}"></script>
+  <script src="{{ URL::to('adminpanel/js/Chart.roundedBarCharts.js') }}"></script>
+
+
+  <script type="text/javascript" src="{{ URL::to('js/app.js') }}"></script>

@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<div class="container-scroller">
+  <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
     @include('dashboard.admin.partials._navbar')
     <!-- partial -->
@@ -18,13 +18,13 @@
       <!-- partial:../../partials/_sidebar.html -->
       @include('dashboard.admin.partials._sidebar')
       <!-- partial -->
-		<div class="container">
-		<div class="col-md-12">
-			@yield('content')
-		</div>
-		</div>
-	</div>
-	</div>
+    <div class="container">
+    <div class="col-md-12">
+      @yield('content')
+    </div>
+    </div>
+  </div>
+  </div>
 
 @include('dashboard.admin.partials._headerscript')
 

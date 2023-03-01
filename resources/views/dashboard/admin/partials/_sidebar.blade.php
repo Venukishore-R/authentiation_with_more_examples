@@ -100,5 +100,41 @@
               <span class="menu-title">Documentation</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+              <i class="icon-ban menu-icon"></i>
+              <span class="menu-title">Print pages</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="error">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('user') }}"> User print</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+              <i class="icon-ban menu-icon"></i>
+              <span class="menu-title">Import Data</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="error">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('import-view') }}"> Import</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+              <i class="icon-ban menu-icon"></i>
+              <span class="menu-title">Export Data</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="error">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('import-view') }}"> Export</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </nav>

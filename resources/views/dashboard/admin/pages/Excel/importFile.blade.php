@@ -6,20 +6,12 @@
 	<link rel="stylesheet"
 		href=
 "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-  @include('dashboard.admin.partials._headerlink')
-
 </head>
 
 <body>
-	<!-- partial:../../partials/_navbar.html -->
-    @include('dashboard.admin.partials._navbar')
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_settings-panel.html -->
-      @include('dashboard.admin.partials._settings-panel')
-      <!-- partial -->
-      <!-- partial:../../partials/_sidebar.html -->
-      @include('dashboard.admin.partials._sidebar')
+	<h6> Import and Export Excel data to
+		database Using Laravel 5.8
+	</h6>
 	<div class="container">
 		<div class="card bg-light mt-3">
 			<div class="card-header">
@@ -37,12 +29,14 @@
 					<button class="btn btn-success">
 						Import User Data
 					</button>
-					<a  class="btn btn-success" href="{{ route('export-users') }}">Export</a>
+					<a class="btn btn-warning"
+					href="{{ route('export-users') }}">
+							Export User Data
+					</a>
 				</form>
 			</div>
 		</div>
 	</div>
-  @include('dashboard.admin.partials._headerscript')
 
 </body>
 

@@ -89,7 +89,7 @@ class UserController extends Controller
 
     public function importView(Request $request)
     {
-        return view('Excel.importFile');
+        return view('dashboard.admin.pages.Export.import_export');
     }
  
     public function import(Request $request)

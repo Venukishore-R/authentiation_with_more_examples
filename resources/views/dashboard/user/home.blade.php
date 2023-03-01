@@ -32,6 +32,7 @@
                              </tr>
                          </tbody>
                  </table>
+            <a href="{{ route('user.courseShow')}}">Courses</a>
             </div>
         </div>
     </div>
