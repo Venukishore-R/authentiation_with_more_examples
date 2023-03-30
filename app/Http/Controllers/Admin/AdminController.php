@@ -15,26 +15,24 @@ class AdminController extends Controller
          $request->validate([
             'email'=>'required|email|exists:admins,email',
             'password'=>'required|min:5|max:30'
-         ],
-
-        //  [
-        //      'email.exists'=>'This email is not exists in admins table'
-        //  ]
+         ],[
+             'email.exists'=>'This email is not exists in admins table'
+         ]
         );
          return view('dashboard.admin.home');
 
-        //  $creds = $request->only('email','password');
+         $data = $request->only('email','password');
 
-        //  if( Auth::guard('admin')->attempt($creds) ){
-        //      return redirect()->route('admin.home');
-        //  }else{
-        //      return redirect()->route('admin.login')->with('fail','Incorrect credentials');
-        //  }
+         if( Auth::guard('admin')->attempt($data) ){
+             return redirect()->route('admin.home');
+         }else{
+             return redirect()->route('admin.login')->with('fail','Incorrect credentials');
+         }
     }
 
     function logout(){
         Auth::guard('admin')->logout();
-        return redirect('/');
+        return view('dashboard.admin.home');
     }
 
 }

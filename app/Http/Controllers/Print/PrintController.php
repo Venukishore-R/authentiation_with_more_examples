@@ -11,13 +11,13 @@ class PrintController extends Controller
     function index()
     {
         $users = User::all();
-        return view('dashboard.user.userPrint',['users'=>$users]);
+        return view('dashboard.admin.pages.print.userPrint',['users'=>$users]);
     }
 
     function print()
     {
         $users = User::all();
-        return view('dashboard.user.user',['users'=>$users]);
+        return view('dashboard.admin.pages.print.user',['users'=>$users]);
     }
 }
 

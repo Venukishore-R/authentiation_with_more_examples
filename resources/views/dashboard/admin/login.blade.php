@@ -32,7 +32,8 @@
                      <div class="form-group">
                          <button type="submit" class="btn btn-primary">Login</button>
                      </div>
-                 </form>
+                </form>
+                <a href="/">Go to home page</a>
             </div>
         </div>
     </div>

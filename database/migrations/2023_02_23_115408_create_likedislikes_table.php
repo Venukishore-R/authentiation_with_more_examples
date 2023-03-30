@@ -14,9 +14,11 @@ class CreateLikedislikesTable extends Migration
     public function up()
     {
         Schema::create('likedislikes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('video_id');
+            $table->Increments('id')->from(111)->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('video_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
             $table->boolean('liked')->default(false);
             // $table->boolean('disliked')->default(false);
             $table->timestamps();
@@ -30,6 +32,12 @@ class CreateLikedislikesTable extends Migration
      */
     public function down()
     {
+        Schema::table('likedislikes', function(Blueprint $table){
+            $table->dropForeign('user_id');
+        });
+        Schema::table('likedislikes', function(Blueprint $table){
+            $table->dropForeign('video_id');
+        });
         Schema::dropIfExists('likedislikes');
     }
 }

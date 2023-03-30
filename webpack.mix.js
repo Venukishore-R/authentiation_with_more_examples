@@ -12,6 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .vue()
     .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/vertical-layout-light/style.scss','public/adminpanel/css/vertical-layout-light')
     .sourceMaps();

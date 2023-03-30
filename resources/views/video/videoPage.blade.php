@@ -4,9 +4,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Video</title>
+
+	@include('dashboard.user.partials._headerlink')
+
 </head>
 <body style="background-color:;">
 	<div>
+		@include('dashboard.user.partials._navbar')
 		<center>
 		<div style="padding: 20px; color: white;">
 			<p>{{$video->videoName}}</p>
@@ -20,14 +24,17 @@
 			<div style="color: black;">
 				<form method="post">
 					@csrf
-					<button name="like" type="submit" value="like" formaction="/like/{{ $video->id}}">Like</button>
+					<button name="like" type="submit" value="like" formaction="{{ route('user.like',[$video->id]) }}">Like</button>
 					{{ $totallikes }}
-					<button name="dislike" type="submit" value="dislike" formaction="/dislike/{{ $video->id }}">Dislike</button>
+					<button name="dislike" type="submit" value="dislike" formaction="{{ route('user.dislike',[$video->id]) }}">Dislike</button>
 					{{ $totaldislikes }}
 				</form>
 			</div>
 		</div>
 		</center>
 	</div> 
+
+	@include('dashboard.user.partials._headerscript')
+
 </body>
 </html>

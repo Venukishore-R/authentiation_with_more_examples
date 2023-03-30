@@ -2,7 +2,7 @@
 @section('content')
 <center>
 <br><br>
-<a href="{{ url('/print') }}" class="btnprn btn">Print Preview</a></center>
+<a href="{{ route('print') }}" class="btnprn btn">Print Preview</a></center>
 <script type="text/javascript">
 $(document).ready(function(){
 $('.btnprn').printPage();

@@ -26,6 +26,7 @@ return [
         'model'=>App\Models\Doctor::class,
      ],
 
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -61,7 +62,7 @@ return [
         'doctor'=>[
             'driver'=>'session',
             'provider'=>'doctors',
-         ],
+        ],
     ],
 
     /*

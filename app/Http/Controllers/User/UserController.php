@@ -69,7 +69,7 @@ class UserController extends Controller
 
     function logout(){
         Auth::guard('web')->logout();
-        return redirect('/');
+        return view('welcome');
     }
 
     function mail()

@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Firebase\FirebaseController;
 use App\Http\Controllers\Video\VideoController;
 use App\Http\Controllers\Print\PrintController;
-
+use App\Events\NewNotification;
 
 
 
@@ -47,20 +47,7 @@ Route::prefix('user')->name('user.')->group(function(){
 
 });
 
-Route::prefix('admin')->name('admin.')->group(function(){
 
-    Route::middleware(['guest:admin','PreventBackHistory'])->group(function(){
-          Route::view('/login','dashboard.admin.login')->name('login');
-          Route::post('/check',[AdminController::class,'check'])->name('check');
-
-    });
-
-    Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
-        Route::view('/home','dashboard.admin.home')->name('home');
-        Route::post('/logout',[AdminController::class,'logout'])->name('logout');
-    });
-
-});
 
 Route::get('/image', function() {
     $name = Auth::guard('web')->user()->name;
@@ -90,6 +77,8 @@ Route::prefix('user')->name('user.')->group(function()
     Route::post('/dislike/{id}',[VideoController::class,'dislike'])->name('dislike');
 });
 
+Route::POST('/logout',[UserController::class,'logout'])->name('logout');
+
 
 
 
@@ -100,3 +89,17 @@ Route::prefix('user')->name('user.')->group(function()
 Route::get('/file-import',[UserController::class,'importView'])->name('import-view');
 Route::post('/import',[UserController::class,'import'])->name('import');
 Route::get('/export-users',[UserController::class,'exportUsers'])->name('export-users');
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/event', function(){
+    event(new NewNotification('Hello World'));
+});
+
+Route::get('/listen', function(){
+    return view('listen');
+});

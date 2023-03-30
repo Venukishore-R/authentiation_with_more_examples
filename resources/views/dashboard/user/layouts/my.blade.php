@@ -1,7 +1,7 @@
 <html>
 <head>
-<link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
 @include('dashboard.admin.partials._headerlink')
+<link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
 
 <script type="text/javascript" src="{{ URL::to('js/app.js') }}"></script>
 
@@ -22,11 +22,8 @@
 		<div class="col-md-12">
 			@yield('content')
 		</div>
-		</div>
+		</div>s
 	</div>
 	</div>
-
-@include('dashboard.admin.partials._headerscript')
-
 </body>
 </html>
